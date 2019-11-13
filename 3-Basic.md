@@ -1,4 +1,4 @@
-Machine-Level Programming I: Basic
+# Machine-Level Programming I: Basic
 
 英特尔发展史 -- 大事记
 
@@ -123,6 +123,7 @@ aritch
     salq    $4,%rdx             # %rdx*16   t4
     leaq    4(%rdi,%rdx),%rcx   # t5
     imulq   %rcx,%rax           # rval
+    ret
 ```
 
 

@@ -4,6 +4,19 @@ int sum_test(int a,int b){
     return a+b;
 }
 
+long absdiff(long x,long y){
+    long result;
+    if(x > y)
+        return x - y;
+    else
+        return y - x;
+    return result;
+}
+
+int gt(long x,long y){
+    return x > y;
+}
+
 long arith(long x,long y,long z){
     long t1 = x+y;
     long t2 = z+t1;
