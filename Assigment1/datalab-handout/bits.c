@@ -225,7 +225,8 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+    // ??? 这怎么用运算符完成
+    return 0;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -235,7 +236,16 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  int neg_x = (~x) + 1;
+  int y_sub_x = y + neg_x;
+  int isneg = y_sub_x >> 31;
+  // 判断x是否为0x80000000
+  int is0x80000000 = x ^ (1<<31);
+
+  // ERROR: Test isLessOrEqual(2147483647[0x7fffffff],-2147483648[0x80000000]) failed...
+  // ...Gives 1[0x1]. Should be 0[0x0]
+  // 负数相减Overflow,Oh NO!!!
+  return !isneg | !is0x80000000;
 }
 //4
 /* 
@@ -310,3 +320,10 @@ int floatFloat2Int(unsigned uf) {
 unsigned floatPower2(int x) {
     return 2;
 }
+
+
+// int main(){
+//   isLessOrEqual(2147483647,-2147483648);
+//   isLessOrEqual(4,5);
+//   return 0;
+// }
