@@ -156,9 +156,7 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
-
+  return 1 << 31;
 }
 //2
 /*
@@ -169,7 +167,9 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 2;
+    // TODO 判断是不是01...1b 不能用<< , 
+    int my_0x7fffffff = ~(1 << 31);
+    return !(x ^ my_0x7fffffff);
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -180,7 +180,11 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+  int my_0xAAAA = 0xaa | (0xaa << 8);
+  int my_0xAAAAAAAA = my_0xAAAA | (my_0xAAAA << 16);
+  int temp1 = x & my_0xAAAAAAAA;
+  int temp2 = temp1 ^ my_0xAAAAAAAA;
+  return !temp2;
 }
 /* 
  * negate - return -x 
@@ -190,7 +194,7 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x + 1;
 }
 //3
 /* 
@@ -203,7 +207,15 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  // -0x30 0xffffffd0
+  // -0x40 0xffffffc6
+  int my_0x30 = 0x30;
+  int my_0x40 = 0x3a;
+  int l = x + 1 + (~my_0x30); // TODO 可以把1优化了
+  int r = x + 1 + (~my_0x40);
+  int isl = l >> 31;  // 0
+  int isr = r >> 31;  // 1
+  return (!isl) & isr;
 }
 /* 
  * conditional - same as x ? y : z 
