@@ -36,16 +36,53 @@ absdiff_j:
 	.cfi_endproc
 .LFE24:
 	.size	absdiff_j, .-absdiff_j
-	.globl	sum_test
-	.type	sum_test, @function
-sum_test:
+	.globl	switch_test_first
+	.type	switch_test_first, @function
+switch_test_first:
 .LFB25:
 	.cfi_startproc
-	leal	(%rdi,%rsi), %eax
+	subl	$100, %edi
+	cmpl	$6, %edi
+	ja	.L9
+	movl	%edi, %edi
+	leaq	.L12(%rip), %rcx
+	movslq	(%rcx,%rdi,4), %rdx
+	addq	%rcx, %rdx
+	jmp	*%rdx
+	.section	.rodata
+	.align 4
+	.align 4
+.L12:
+	.long	.L18-.L12
+	.long	.L9-.L12
+	.long	.L13-.L12
+	.long	.L14-.L12
+	.long	.L15-.L12
+	.long	.L16-.L12
+	.long	.L17-.L12
+	.text
+.L13:
+	movl	$2, %eax
 	ret
+.L14:
+	movl	$3, %eax
+	ret
+.L15:
+	movl	$4, %eax
+	ret
+.L16:
+	movl	$5, %eax
+	ret
+.L17:
+	movl	$6, %eax
+	ret
+.L18:
+	movl	$1, %eax
+.L9:
+	rep ret
 	.cfi_endproc
 .LFE25:
-	.size	sum_test, .-sum_test
+	.size	switch_test_first, .-switch_test_first
 	.globl	gt
 	.type	gt, @function
 gt:
@@ -75,7 +112,7 @@ arith:
 	.size	arith, .-arith
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
-	.string	"%d\n"
+	.string	"hello world"
 	.text
 	.globl	main
 	.type	main, @function
@@ -84,14 +121,8 @@ main:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	movl	$10, %esi
-	movl	$5, %edi
-	call	sum_test
-	movl	%eax, %edx
-	leaq	.LC0(%rip), %rsi
-	movl	$1, %edi
-	movl	$0, %eax
-	call	__printf_chk@PLT
+	leaq	.LC0(%rip), %rdi
+	call	puts@PLT
 	movl	$0, %eax
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 8

@@ -23,8 +23,29 @@ Done:
     return result;
 }
 
-int sum_test(int a,int b){
-    return a+b;
+int switch_test_first(int x) {
+    int res ;
+    switch( x ){
+        case 100 :
+            res = 1 ;
+            break ;
+        case 102 :
+            res = 2 ;
+            break ;
+        case 103 :
+            res = 3 ;
+            break ;
+        case 104 :
+            res = 4 ;
+            break ;
+        case 105 :
+            res = 5 ;
+            break ;
+        case 106 :
+            res = 6 ;
+            break ;
+    }
+    return res ;
 }
 
 int gt(long x,long y){
@@ -42,10 +63,6 @@ long arith(long x,long y,long z){
 }
 
 int main(){
-    int a, b, c;
-    a = 5;
-    b = 10;
-    c = sum_test(a,b);
-    printf("%d\n",c);
+    printf("hello world\n");
     return 0;
 }
