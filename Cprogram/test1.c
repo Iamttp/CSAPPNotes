@@ -1,3 +1,7 @@
+/**
+ * 3.1，3.2的一些测试代码，对照着test1.s看
+*/
+
 #include<stdio.h>
 
 long absdiff(long x,long y){
@@ -23,6 +27,7 @@ Done:
     return result;
 }
 
+// 测试Switch，汇编为索引表
 int switch_test_first(int x) {
     int res ;
     switch( x ){
