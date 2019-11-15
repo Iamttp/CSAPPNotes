@@ -40,6 +40,41 @@ call_incr:
 	.cfi_endproc
 .LFE24:
 	.size	call_incr, .-call_incr
+	.globl	func
+	.type	func, @function
+func:
+.LFB25:
+	.cfi_startproc
+	cmpq	$1, %rdi
+	jg	.L13
+	movl	$1, %eax
+	ret
+.L13:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 32
+	movq	%rdi, %rbx
+	leaq	-1(%rdi), %rdi
+	call	func
+	movq	%rax, %rbp
+	leaq	-2(%rbx), %rdi
+	call	func
+	addq	%rbp, %rax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 24
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE25:
+	.size	func, .-func
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
 	.string	"hello world"
@@ -47,7 +82,7 @@ call_incr:
 	.globl	main
 	.type	main, @function
 main:
-.LFB25:
+.LFB26:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -58,7 +93,7 @@ main:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE25:
+.LFE26:
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0"
 	.section	.note.GNU-stack,"",@progbits

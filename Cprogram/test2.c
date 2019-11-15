@@ -17,6 +17,12 @@ long call_incr() {
     return v1 + v2;
 }
 
+long func(long x) {
+    if(x <= 1)
+        return 1;
+    return func(x-1) + func(x-2);
+}
+
 int main(){
     printf("hello world\n");
     return 0;
