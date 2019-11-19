@@ -1,7 +1,9 @@
 # Introduction to Computer Systems -- ICS 
 
 B站视频： `https://www.bilibili.com/video/av31289365`
+
 实验资源： `http://csapp.cs.cmu.edu/3e/labs.html`
+
 课程资源： `http://www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/index.html`
 
 卡耐基梅隆大学的公开课，教材是CSAPP，教课的老师是CSAPP的作者。
@@ -46,7 +48,9 @@ Networking, and Concurrency -- 网络与并发
 
 # CSAPP章节简介
 
-（个人感觉，具体介绍看相关.md） 
+（个人观点，具体介绍看相关`.md`） 
+
+![avatar](0.jpg)
 
 ## 第一章 -- 计算机系统漫游
 
